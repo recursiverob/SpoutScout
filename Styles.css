@@ -1,0 +1,159 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+
+#map { 
+    height: 100vh; 
+    width: 100%; 
+    visibility: hidden; 
+}
+
+#loading {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f8ff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#loading img {
+    width: 200px;
+    height: auto;
+    animation: pulse 1.5s ease-in-out infinite; /* Pulsing effect */
+}
+
+#loading img {
+    width: 195px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    animation: pulse 1.5s ease-in-out infinite; /* Add pulsing effect */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Original size */
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        transform: scale(1.2); /* Grow slightly */
+        opacity: 0.8; /* Fade slightly */
+    }
+    100% {
+        transform: scale(1); /* Back to original size */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+
+.search-bar, .map-controls, .message-box {
+    position: absolute;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.search-bar {
+    top: 10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+.map-controls {
+    top: 10px; 
+    right: 10px;
+}
+
+.message-box {
+    position: absolute;
+    bottom: 10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    z-index: 1000;
+    background-color: white;
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.8s ease-in-out; /* Smooth fade-in and fade-out */
+}
+
+.message-box.active {
+    opacity: 1; /* Fully visible when active */
+}
+
+
+button {
+    background-color: #1f93ce;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #02b1ec; 
+}
+
+input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #1f93ce;
+    border-radius: 5px;
+    width: 250px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+#map-controls {
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    background: white;
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensures it appears above the map */
+}
+
+#map-controls button {
+    display: block; /* Stack buttons vertically */
+    width: 150px;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #1f93ce;
+    border-radius: 10px;
+    background-color: #1f93ce;
+    cursor: pointer;
+}
+
+#map-controls button:hover {
+    background-color: #02b1ec;
+}
+
+#copyright {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 11px;
+    color: #333;
+    background: #02b1ec6d; /* Slightly transparent background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it appears above the map */
+    pointer-events: none; /* Prevent interaction with the map */
+}
+.leaflet-control-attribution {
+    display: none;
+}
+
