@@ -237,21 +237,9 @@ function showMyLocation() {
 
         map.setView([userLat, userLng], 15); // Center the map on user's location
         showMessage("Your location is displayed on the map");
-    }, (error) => {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                showMessage("Location access denied. Please enable location permissions.", true);
-                break;
-            case error.POSITION_UNAVAILABLE:
-                showMessage("Location information is unavailable. Try again later.", true);
-                break;
-            case error.TIMEOUT:
-                showMessage("The request to get your location timed out. Please try again.", true);
-                break;
-            default:
-                showMessage("Unable to retrieve your location. Please try again.", true);
-                break;
-        }
+    }, error => {
+        console.error("Error retrieving location:", error);
+        showMessage("Unable to retrieve your location", true);
     });
 }
 
