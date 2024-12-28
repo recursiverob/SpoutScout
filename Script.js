@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create a marker cluster group
     markers = L.markerClusterGroup();
 
+    //The Geocoded_Addresses_Updated_Single_Line.json file contains the data for fountains in South Dakota .
     // Array of fountain JSON files
     const fountainFiles = [
         'JSON Locations/NYC_Fountains.json',
@@ -101,8 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     heatmapLayer.addLatLng(heatmapData);
                 }
             })
-            /*
-            .catch(error => {
+            /*.catch(error => {
                 showMessage(`Error loading ${file}`, true);
             });
             */
@@ -118,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
             console.error("Error loading NYC ZIP codes JSON:", error);
         });
-        
 
     // Add the "Locate Nearest Drinking Fountain" button
     //const locateButton = document.createElement('button');
@@ -238,9 +237,21 @@ function showMyLocation() {
 
         map.setView([userLat, userLng], 15); // Center the map on user's location
         showMessage("Your location is displayed on the map");
-    }, error => {
-        console.error("Error retrieving location:", error);
-        showMessage("Unable to retrieve your location", true);
+    }, (error) => {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                showMessage("Location access denied. Please enable location permissions.", true);
+                break;
+            case error.POSITION_UNAVAILABLE:
+                showMessage("Location information is unavailable. Try again later.", true);
+                break;
+            case error.TIMEOUT:
+                showMessage("The request to get your location timed out. Please try again.", true);
+                break;
+            default:
+                showMessage("Unable to retrieve your location. Please try again.", true);
+                break;
+        }
     });
 }
 
@@ -269,21 +280,9 @@ function searchLocation() {
                 showMessage("Location not found", true);
             }
         })
-        (error) => {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    showMessage("Location access denied. Please enable location permissions.", true);
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    showMessage("Location information is unavailable. Try again later.", true);
-                    break;
-                case error.TIMEOUT:
-                    showMessage("The request to get your location timed out. Please try again.", true);
-                    break;
-                default:
-                    showMessage("Unable to retrieve your location. Please try again.", true);
-                    break;
-            }
+        .catch(error => {
+            console.error("Error searching location:", error);
+            showMessage("Failed to search location", true);
         });
 }
 
