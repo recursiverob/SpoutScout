@@ -101,9 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     heatmapLayer.addLatLng(heatmapData);
                 }
             })
+            /*
             .catch(error => {
                 showMessage(`Error loading ${file}`, true);
             });
+            */
     });
 
     // Fetch the NYC ZIP codes JSON
@@ -113,10 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
             data.nyc_zip_codes.forEach(zip => nycZipCodes.add(zip));
             console.log("NYC ZIP codes loaded.");
         })
-        /*.catch(error => {
+        .catch(error => {
             console.error("Error loading NYC ZIP codes JSON:", error);
         });
-        */
+        
 
     // Add the "Locate Nearest Drinking Fountain" button
     //const locateButton = document.createElement('button');
