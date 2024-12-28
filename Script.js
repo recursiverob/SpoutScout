@@ -4,6 +4,7 @@ let currentTileLayer;
 let markers;
 let zipCodeLayer;
 let nycZipCodes = new Set();
+let userMarker;
 
 window.onload = function() {
     setTimeout(() => {
@@ -12,9 +13,16 @@ window.onload = function() {
     }, 2000); // Simulate loading time
 };
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    map = L.map('map').setView([39.8283, -98.5795], 5); // Centered on US
+    const usBounds = [
+        [24.396308, -125.0], // Southwest corner
+        [49.384358, -66.93457] // Northeast corner
+    ];
+
+    map = L.map('map', {
+        maxBounds: usBounds,
+        maxBoundsViscosity: 1.0 // Fully restricts panning beyond bounds
+    }).setView([39.8283, -98.5795], 5); // Centered on US
 
     // Add OpenStreetMap tiles
     currentTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -25,8 +33,34 @@ document.addEventListener("DOMContentLoaded", () => {
     markers = L.markerClusterGroup();
 
     // Array of fountain JSON files
-    const fountainFiles = ['./NY-fountains.json', 'Pittsburgh Drinking Foutains.json', 'Geocoded_Addresses_Updated_Single_Line.json'];
-
+    const fountainFiles = [
+        './NY-fountains.json',
+        'Pittsburgh Drinking Foutains.json',
+        './Geocoded_Addresses_Updated_Single_Line.json',
+        'Pasadena-CA Drinking-Fountains.json',
+        'Denver_park_addresses.json',
+        'Random Fountains.json',
+        'Plano_TX_Fountains.json',
+        'Dallas_TX_Fountains.json'
+    ];
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('get-directions-btn')) {
+            const lat = parseFloat(event.target.getAttribute('data-lat'));
+            const lng = parseFloat(event.target.getAttribute('data-lng'));
+    
+            if (!isNaN(lat) && !isNaN(lng)) {
+                openGoogleMapsDirections(lat, lng);
+            } else {
+                showMessage("Invalid coordinates for navigation", true);
+            }
+        }
+    });
+    
+    function openGoogleMapsDirections(lat, lng) {
+        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+        window.open(directionsUrl, '_blank'); // Opens Google Maps directions in a new tab
+    }
+    
     // Fetch the fountains data from multiple files
     fountainFiles.forEach(file => {
         fetch(file)
@@ -42,8 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const marker = L.marker(latLng);
                     marker.bindPopup(`
                         <b>${fountain.name}</b><br>
+                        <!-- <b>City:</b> ${fountain.city || 'Unknown'}<br>
+                        <b>Latitude:</b> ${fountain.lat}<br>
+                        <b>Longitude:</b> ${fountain.lng}<br> -->
                         <button class="get-directions-btn" data-lat="${fountain.lat}" data-lng="${fountain.lng}">
-                            Get Directions
+                            Get Me Here
                         </button>
                     `);
                     markers.addLayer(marker);
@@ -79,38 +116,129 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
             console.error("Error loading NYC ZIP codes JSON:", error);
         });
+
+    // Add the "Locate Nearest Drinking Fountain" button
+    //const locateButton = document.createElement('button');
+    locateButton.textContent = "Locate Nearest Drinking Fountain";
+    locateButton.id = "locate-nearest";
+    locateButton.style.position = "absolute";
+    locateButton.style.top = "80px";
+    locateButton.style.left = "10px";
+    locateButton.style.zIndex = "1000";
+    locateButton.onclick = locateNearestFountain;
+    document.body.appendChild(locateButton);
+
+    // Add the "Show My Location" button
+    //const myLocationButton = document.createElement('button');
+    myLocationButton.textContent = "Show My Location";
+    myLocationButton.id = "show-my-location";
+    myLocationButton.style.position = "absolute";
+    myLocationButton.style.top = "120px";
+    myLocationButton.style.left = "10px";
+    myLocationButton.style.zIndex = "1000";
+    myLocationButton.onclick = showMyLocation;
+    document.body.appendChild(myLocationButton);
+
+    // Add event listener for Get Me Here buttons
+    document.addEventListener('click', event => {
+        if (event.target.classList.contains('get-directions-btn')) {
+            const lat = parseFloat(event.target.getAttribute('data-lat'));
+            const lng = parseFloat(event.target.getAttribute('data-lng'));
+            openGoogleMapsDirections(lat, lng);
+        }
+    });
+
+    // Add the search button functionality
+    const searchButton = document.getElementById("search-button");
+    if (searchButton) {
+        searchButton.addEventListener("click", searchLocation);
+    }
 });
 
-function toggleMapStyle() {
-    if (currentTileLayer._url.includes('openstreetmap.org')) {
-        // Switch to Esri Satellite tiles
-        map.removeLayer(currentTileLayer);
-        currentTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
-            maxZoom: 19,
-        });
-        currentTileLayer.addTo(map);
-        showMessage("Switched to satellite view");
-    } else {
-        // Switch back to OpenStreetMap tiles
-        map.removeLayer(currentTileLayer);
-        currentTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors',
-            maxZoom: 19,
-        });
-        currentTileLayer.addTo(map);
-        showMessage("Switched to default map style");
+function locateNearestFountain() {
+    if (!navigator.geolocation) {
+        showMessage("Geolocation is not supported by your browser", true);
+        return;
     }
+
+    navigator.geolocation.getCurrentPosition(position => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+
+        let nearestFountain = null;
+        let shortestDistance = Infinity;
+
+        // Iterate through the markers to find the nearest fountain
+        markers.eachLayer(marker => {
+            const fountainLat = marker.getLatLng().lat;
+            const fountainLng = marker.getLatLng().lng;
+
+            const distanceInfo = haversineDistance(userLat, userLng, fountainLat, fountainLng);
+            if (distanceInfo.km < shortestDistance) {
+                shortestDistance = distanceInfo.km;
+                nearestFountain = marker;
+            }
+        });
+
+        if (nearestFountain) {
+            const { lat, lng } = nearestFountain.getLatLng();
+            const popupContent = nearestFountain.getPopup().getContent();
+            const nameMatch = /<b>(.*?)<\/b>/.exec(popupContent);
+            const locationName = nameMatch ? nameMatch[1] : "Unknown Location";
+
+            // Uncluster the nearest fountain if it is part of a cluster
+            markers.zoomToShowLayer(nearestFountain, () => {
+                // Center the map, open the popup, and display the message
+                map.setView([lat, lng], 15); // Zoom to the nearest fountain
+                nearestFountain.bindPopup(popupContent).openPopup(); // Open the popup
+                showMessage(`Nearest fountain located at ${locationName} (${shortestDistance.toFixed(2)} km / ${(shortestDistance * 0.621371).toFixed(2)} mi away)`);
+            });
+        } else {
+            showMessage("No fountains found nearby", true);
+        }
+    }, error => {
+        console.error("Error retrieving location:", error);
+        showMessage("Unable to retrieve your location", true);
+    });
 }
 
-function toggleHeatmap() {
-    if (map.hasLayer(heatmapLayer)) {
-        map.removeLayer(heatmapLayer);
-        showMessage("Heatmap disabled");
-    } else {
-        map.addLayer(heatmapLayer);
-        showMessage("Heatmap enabled");
+
+
+function showMyLocation() {
+    if (!navigator.geolocation) {
+        showMessage("Geolocation is not supported by your browser", true);
+        return;
     }
+
+    navigator.geolocation.getCurrentPosition(position => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+
+        if (userMarker) {
+            map.removeLayer(userMarker);
+        }
+
+        // Create a custom icon
+        const customIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', // URL for a red marker
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png', // Optional shadow
+            iconSize: [40, 60], // Customize size: [width, height]
+            iconAnchor: [20, 60], // Anchor point of the icon (center bottom)
+            popupAnchor: [0, -50] // Point where the popup should open relative to the icon
+        });
+
+        // Add a custom marker to the map
+        userMarker = L.marker([userLat, userLng], { icon: customIcon })
+            .addTo(map)
+            .bindPopup("You are here")
+            .openPopup();
+
+        map.setView([userLat, userLng], 15); // Center the map on user's location
+        showMessage("Your location is displayed on the map");
+    }, error => {
+        console.error("Error retrieving location:", error);
+        showMessage("Unable to retrieve your location", true);
+    });
 }
 
 function searchLocation() {
@@ -121,8 +249,14 @@ function searchLocation() {
         return;
     }
 
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}&countrycodes=us`)
-        .then(response => response.json())
+    const requestUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=us`;
+    console.log("Requesting:", requestUrl); // Debug log
+
+    fetch(requestUrl)
+        .then(response => {
+            if (!response.ok) throw new Error(`Error fetching location: ${response.statusText}`);
+            return response.json();
+        })
         .then(data => {
             if (data.length > 0) {
                 const { lat, lon } = data[0];
@@ -138,90 +272,70 @@ function searchLocation() {
         });
 }
 
-function highlightZipCode() {
-    const query = document.getElementById('search').value.trim();
 
-    if (!query) {
-        showMessage("Please enter a ZIP code to highlight", true);
-        return;
-    }
-
-    if (!nycZipCodes.has(query)) {
-        showMessage("This ZIP code is not in New York City", true);
-        return;
-    }
-
-    // Fetch ZIP code boundary data
-    fetch(`https://geo.fcc.gov/api/census/area?format=geojson&zip=${query}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to fetch ZIP code boundary data");
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.features && data.features.length > 0) {
-                const zipFeature = data.features[0];
-
-                // Ensure the ZIP code is in the United States
-                if (zipFeature.properties && zipFeature.properties.COUNTRY && zipFeature.properties.COUNTRY !== 'US') {
-                    showMessage("ZIP code is not within the United States", true);
-                    return;
-                }
-
-                // Remove existing ZIP code layer
-                if (zipCodeLayer) {
-                    map.removeLayer(zipCodeLayer);
-                }
-
-                // Add ZIP code boundary to map
-                zipCodeLayer = L.geoJSON(zipFeature.geometry, {
-                    style: {
-                        color: "blue",
-                        weight: 3,
-                        dashArray: "5, 5",
-                        opacity: 0.8,
-                        fillColor: "lightblue",
-                        fillOpacity: 0.4,
-                    },
-                    onEachFeature: function (feature, layer) {
-                        layer.bindPopup(`ZIP Code: ${query}`);
-                    },
-                }).addTo(map);
-
-                // Fit map to boundary
-                map.fitBounds(zipCodeLayer.getBounds());
-                showMessage("ZIP code highlighted successfully");
-            } else {
-                showMessage("ZIP code boundary data unavailable", true);
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching ZIP code boundary data:", error);
-            showMessage("Failed to highlight ZIP code", true);
-        });
-}
-
-document.addEventListener('click', event => {
-    if (event.target.classList.contains('get-directions-btn')) {
-        const lat = parseFloat(event.target.getAttribute('data-lat'));
-        const lng = parseFloat(event.target.getAttribute('data-lng'));
-        openGoogleMapsDirections(lat, lng);
-    }
-});
 
 function openGoogleMapsDirections(lat, lng) {
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     window.open(directionsUrl, '_blank');
 }
 
+// Haversine formula to calculate distance between two points
+function haversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const km = R * c; // Distance in km
+    const mi = km * 0.621371; // Distance in miles
+    return { km, mi }; // Return both distances
+}
+
+function toggleMapStyle() {
+    const toggleButton = document.getElementById('toggle-map-style');
+    if (currentTileLayer._url.includes('openstreetmap.org')) {
+        // Switch to Satellite View
+        map.removeLayer(currentTileLayer);
+        currentTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+            maxZoom: 19,
+        });
+        currentTileLayer.addTo(map);
+        toggleButton.textContent = "Default Map View"; // Update button text
+        showMessage("Switched to Satellite View");
+    } else {
+        // Switch to Default Map View
+        map.removeLayer(currentTileLayer);
+        currentTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19,
+        });
+        currentTileLayer.addTo(map);
+        toggleButton.textContent = "Satellite View"; // Update button text
+        showMessage("Switched to Default Map View");
+    }
+}
+
+
 function showMessage(message, isError = false) {
     const messageBox = document.getElementById('message-box');
     messageBox.textContent = message;
     messageBox.style.backgroundColor = isError ? '#f8d7da' : '#d4edda';
     messageBox.style.color = isError ? '#721c24' : '#155724';
+    messageBox.style.opacity = '1'; // Ensure message is fully visible
     messageBox.classList.add('active');
+
+    // Start fading out after 4 seconds
+    setTimeout(() => {
+        messageBox.style.opacity = '0'; // Fade out
+    }, 4000);
+
+    // Remove the active class and reset styles after fade-out (5 seconds)
     setTimeout(() => {
         messageBox.classList.remove('active');
-    }, 3000);
+        messageBox.style.opacity = ''; // Reset opacity for future messages
+    }, 5000);
 }
