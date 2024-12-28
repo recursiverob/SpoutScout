@@ -1,0 +1,607 @@
+[
+  {
+    "name": "Jones Park",
+    "lat": 32.8296169,
+    "lng": -96.6903907
+  },
+  {
+    "name": "Devon-Anderson",
+    "lat": 32.7412718,
+    "lng": -96.7063936
+  },
+  {
+    "name": "Ruthmeade Park",
+    "lat": 32.7363968,
+    "lng": -96.8347611
+  },
+  {
+    "name": "Ferris Plaza",
+    "lat": 32.7763325,
+    "lng": -96.8066006
+  },
+  {
+    "name": "Moss Park",
+    "lat": 32.7440057,
+    "lng": -96.8624319
+  },
+  {
+    "name": "Kensington Park",
+    "lat": 32.716695,
+    "lng": -96.641363
+  },
+  {
+    "name": "Doris Berry Park",
+    "lat": 32.6971723,
+    "lng": -96.8869372
+  },
+  {
+    "name": "Kiowa Parkway",
+    "lat": 32.9550261,
+    "lng": -96.7972569
+  },
+  {
+    "name": "Arbor Park",
+    "lat": 32.8888978,
+    "lng": -96.7325068
+  },
+  {
+    "name": "Stafford Park",
+    "lat": 32.770798,
+    "lng": -96.839571
+  },
+  {
+    "name": "Cox Lane Park",
+    "lat": 32.8961931,
+    "lng": -96.8500086
+  },
+  {
+    "name": "Old East Dallas Work Yard Park",
+    "lat": 32.794033,
+    "lng": -96.7609422
+  },
+  {
+    "name": "Urbandale Park",
+    "lat": 32.7723645,
+    "lng": -96.6937212
+  },
+  {
+    "name": "Pagewood Park",
+    "lat": 32.8934177,
+    "lng": -96.7786788
+  },
+  {
+    "name": "Turtle Creek Parkway",
+    "lat": 32.8149268,
+    "lng": -96.7984685
+  },
+  {
+    "name": "Anderson Bonner Park",
+    "lat": 32.919816,
+    "lng": -96.7775312
+  },
+  {
+    "name": "Twin Falls Park",
+    "lat": 32.6720454,
+    "lng": -96.8391928
+  },
+  {
+    "name": "R.P. Brooks Park",
+    "lat": 32.872635,
+    "lng": -96.7397818
+  },
+  {
+    "name": "Coombs Creek Greenbelt",
+    "lat": 32.7243054,
+    "lng": -96.8775887
+  },
+  {
+    "name": "Irene H Trigg-Myers Prosperity Park (Kimble Park)",
+    "lat": 32.7626228,
+    "lng": -96.7719649
+  },
+  {
+    "name": "Pacific Plaza",
+    "lat": 32.7834406,
+    "lng": -96.795966
+  },
+  {
+    "name": "Carpenter Park",
+    "lat": 32.7845335,
+    "lng": -96.7924051
+  },
+  {
+    "name": "Craddock Park",
+    "lat": 32.8200258,
+    "lng": -96.8160762
+  },
+  {
+    "name": "Lake Highlands Park",
+    "lat": 32.8426173,
+    "lng": -96.7063684
+  },
+  {
+    "name": "Samuell-Garland Park",
+    "lat": 32.8671142,
+    "lng": -96.6718216
+  },
+  {
+    "name": "Sand Springs Park",
+    "lat": 32.7558112,
+    "lng": -96.6461867
+  },
+  {
+    "name": "Oak Cliff Founders Park",
+    "lat": 32.7599102,
+    "lng": -96.81708
+  },
+  {
+    "name": "Elmwood Parkway",
+    "lat": 32.722228,
+    "lng": -96.8482244
+  },
+  {
+    "name": "Preston Green Park",
+    "lat": 32.9857392,
+    "lng": -96.7874652
+  },
+  {
+    "name": "Crockett Dog Park",
+    "lat": 32.7933507,
+    "lng": -96.7703552
+  },
+  {
+    "name": "Kiowa Park",
+    "lat": 32.96249,
+    "lng": -96.7943969
+  },
+  {
+    "name": "Wheatley Park",
+    "lat": 32.7649004,
+    "lng": -96.7591855
+  },
+  {
+    "name": "Watercrest Park",
+    "lat": 32.8757901,
+    "lng": -96.7316707
+  },
+  {
+    "name": "Emerald Lake Park",
+    "lat": 32.6505958,
+    "lng": -96.9660409
+  },
+  {
+    "name": "Five Mile Creek Greenbelt (East)",
+    "lat": 32.6930844,
+    "lng": -96.8328651
+  },
+  {
+    "name": "Friendship Park",
+    "lat": 32.9195673,
+    "lng": -96.707072
+  },
+  {
+    "name": "Jamestown Park",
+    "lat": 32.9195279,
+    "lng": -96.8078158
+  },
+  {
+    "name": "Pike Park",
+    "lat": 32.7932179,
+    "lng": -96.8097098
+  },
+  {
+    "name": "Cherrywood Park",
+    "lat": 32.823074,
+    "lng": -96.828402
+  },
+  {
+    "name": "Brownwood Park",
+    "lat": 32.8800293,
+    "lng": -96.8634126
+  },
+  {
+    "name": "Lindsley Park",
+    "lat": 32.8078749,
+    "lng": -96.7385245
+  },
+  {
+    "name": "Flagpole Hill Park",
+    "lat": 32.8607283,
+    "lng": -96.7231019
+  },
+  {
+    "name": "Bluff View Park",
+    "lat": 32.8558906,
+    "lng": -96.8302428
+  },
+  {
+    "name": "Turtle Creek Park",
+    "lat": 32.8083849,
+    "lng": -96.8033326
+  },
+  {
+    "name": "MoneyGram Soccer Park at Elm Fork",
+    "lat": 32.8745763,
+    "lng": -96.9233856
+  },
+  {
+    "name": "Bent Tree Meadow",
+    "lat": 32.9948444,
+    "lng": -96.8373253
+  },
+  {
+    "name": "Teagarden Place",
+    "lat": 32.6750993,
+    "lng": -96.66263
+  },
+  {
+    "name": "Westmoreland Park",
+    "lat": 32.7210331,
+    "lng": -96.8796687
+  },
+  {
+    "name": "Frankford Park",
+    "lat": 33.0009993,
+    "lng": -96.7852646
+  },
+  {
+    "name": "Carpenter Park",
+    "lat": 32.7845335,
+    "lng": -96.7924051
+  },
+  {
+    "name": "Old Renner Park",
+    "lat": 32.9956225,
+    "lng": -96.7877162
+  },
+  {
+    "name": "Beverly Hills Park",
+    "lat": 32.7452454,
+    "lng": -96.8768194
+  },
+  {
+    "name": "Casa View Park",
+    "lat": 32.8472604,
+    "lng": -96.6748384
+  },
+  {
+    "name": "Preston Hollow Park",
+    "lat": 32.8726073,
+    "lng": -96.7905616
+  },
+  {
+    "name": "Leo V. Chaney Park",
+    "lat": 32.7766642,
+    "lng": -96.7969879
+  },
+  {
+    "name": "Valley View Park",
+    "lat": 32.9264589,
+    "lng": -96.783544
+  },
+  {
+    "name": "Webb Chapel Park",
+    "lat": 32.9041538,
+    "lng": -96.8635861
+  },
+  {
+    "name": "Cheyenne Park",
+    "lat": 32.7238844,
+    "lng": -96.6377573
+  },
+  {
+    "name": "Northwood Park",
+    "lat": 32.8947611,
+    "lng": -96.7570943
+  },
+  {
+    "name": "Pecan Grove Park",
+    "lat": 32.7065561,
+    "lng": -96.8769846
+  },
+  {
+    "name": "Benito Juarez Park",
+    "lat": 32.78297800000001,
+    "lng": -96.8388417
+  },
+  {
+    "name": "J.P. Hawn Park",
+    "lat": 32.7583341,
+    "lng": -96.6570087
+  },
+  {
+    "name": "Cottonwood Park",
+    "lat": 32.9358646,
+    "lng": -96.7585991
+  },
+  {
+    "name": "Cotillion Park",
+    "lat": 32.8449429,
+    "lng": -96.6552385
+  },
+  {
+    "name": "Parkdale Park",
+    "lat": 32.7756584,
+    "lng": -96.7147576
+  },
+  {
+    "name": "Crown Park",
+    "lat": 32.8989397,
+    "lng": -96.9007163
+  },
+  {
+    "name": "Royal Park",
+    "lat": 32.8959558,
+    "lng": -96.7766325
+  },
+  {
+    "name": "Casa Linda Park",
+    "lat": 32.8207083,
+    "lng": -96.6989024
+  },
+  {
+    "name": "McCree Park",
+    "lat": 32.8707648,
+    "lng": -96.6990589
+  },
+  {
+    "name": "Everglade Park",
+    "lat": 32.7919577,
+    "lng": -96.6999928
+  },
+  {
+    "name": "Lakewood Park",
+    "lat": 32.8312095,
+    "lng": -96.7350053
+  },
+  {
+    "name": "Umphress Park",
+    "lat": 32.74359680000001,
+    "lng": -96.6898773
+  },
+  {
+    "name": "Kleberg Park",
+    "lat": 32.6845789,
+    "lng": -96.6039454
+  },
+  {
+    "name": "White Rock Lake Dog Park",
+    "lat": 32.8520023,
+    "lng": -96.72518370000002
+  },
+  {
+    "name": "Timberglen Park",
+    "lat": 33.0044954,
+    "lng": -96.8475859
+  },
+  {
+    "name": "Gateway Park",
+    "lat": 32.7573606,
+    "lng": -96.7010164
+  },
+  {
+    "name": "Harry Stone Park",
+    "lat": 32.8272238,
+    "lng": -96.6725506
+  },
+  {
+    "name": "Tipton Park",
+    "lat": 32.7890739,
+    "lng": -96.8810096
+  },
+  {
+    "name": "Park in the Woods Park",
+    "lat": 32.642444,
+    "lng": -96.9541293
+  },
+  {
+    "name": "Harry S. Moss Park",
+    "lat": 32.8892171,
+    "lng": -96.7509113
+  },
+  {
+    "name": "Danieldale Park",
+    "lat": 32.6464741,
+    "lng": -96.8305922
+  },
+  {
+    "name": "Klyde Warren Park",
+    "lat": 32.7893644,
+    "lng": -96.8016184
+  },
+  {
+    "name": "Glencoe Park",
+    "lat": 32.832566,
+    "lng": -96.7785114
+  },
+  {
+    "name": "Hattie R Moore",
+    "lat": 32.8124257,
+    "lng": -96.8067277
+  },
+  {
+    "name": "Westhaven Park",
+    "lat": 32.7086882,
+    "lng": -96.8997848
+  },
+  {
+    "name": "Ferguson Park",
+    "lat": 32.8165444,
+    "lng": -96.6819569
+  },
+  {
+    "name": "Rose Haggar Park",
+    "lat": 32.9965204,
+    "lng": -96.8051242
+  },
+  {
+    "name": "Hamilton Park",
+    "lat": 32.9178881,
+    "lng": -96.7634869
+  },
+  {
+    "name": "Meadow Stone Park",
+    "lat": 32.6561394,
+    "lng": -96.861737
+  },
+  {
+    "name": "Cole Park May",
+    "lat": 32.8132125,
+    "lng": -96.7933961
+  },
+  {
+    "name": "Arcadia Park",
+    "lat": 32.7495751,
+    "lng": -96.91056
+  },
+  {
+    "name": "Northaven Park & Greenbelt",
+    "lat": 32.9033684,
+    "lng": -96.8480002
+  },
+  {
+    "name": "NorthBark Dog Park",
+    "lat": 33.0111194,
+    "lng": -96.820073
+  },
+  {
+    "name": "Lakeland Hills Park",
+    "lat": 32.803939,
+    "lng": -96.6968053
+  },
+  {
+    "name": "Pleasant Oaks Park",
+    "lat": 32.7515805,
+    "lng": -96.6709858
+  },
+  {
+    "name": "Crawford Memorial Park",
+    "lat": 32.7184962,
+    "lng": -96.6722846
+  },
+  {
+    "name": "Exline Park",
+    "lat": 32.7568768,
+    "lng": -96.7606494
+  },
+  {
+    "name": "Samuell-Grand Park",
+    "lat": 32.7961952,
+    "lng": -96.7411243
+  },
+  {
+    "name": "Lake Highlands North Park",
+    "lat": 32.8853807,
+    "lng": -96.7275273
+  },
+  {
+    "name": "Walnut Hill Park",
+    "lat": 32.8815249,
+    "lng": -96.8392135
+  },
+  {
+    "name": "Wagging Tail Dog Park",
+    "lat": 32.9704881,
+    "lng": -96.808134
+  },
+  {
+    "name": "Thurgood Marshall Park",
+    "lat": 32.6840613,
+    "lng": -96.8541655
+  },
+  {
+    "name": "Lake Cliff Park",
+    "lat": 32.7567408,
+    "lng": -96.8191585
+  },
+  {
+    "name": "Pemberton Hill Park",
+    "lat": 32.7190979,
+    "lng": -96.7106622
+  },
+  {
+    "name": "Fretz Park",
+    "lat": 32.9491456,
+    "lng": -96.7815655
+  },
+  {
+    "name": "Churchill Park",
+    "lat": 32.9175286,
+    "lng": -96.7847315
+  },
+  {
+    "name": "William Blair Jr. Park",
+    "lat": 32.740562,
+    "lng": -96.74595800000002
+  },
+  {
+    "name": "Bachman Lake Park",
+    "lat": 32.8566405,
+    "lng": -96.8630861
+  },
+  {
+    "name": "Reverchon Park",
+    "lat": 32.8004217,
+    "lng": -96.8126311
+  },
+  {
+    "name": "Nash Davis Park",
+    "lat": 32.78769940000001,
+    "lng": -96.8548673
+  },
+  {
+    "name": "Fireside Park",
+    "lat": 32.6995357,
+    "lng": -96.6727781
+  },
+  {
+    "name": "Ridgewood Park",
+    "lat": 32.8496106,
+    "lng": -96.7489167
+  },
+  {
+    "name": "Martin Weiss Park",
+    "lat": 32.7334539,
+    "lng": -96.8773222
+  },
+  {
+    "name": "Fair Oaks Park",
+    "lat": 32.8778126,
+    "lng": -96.75314
+  },
+  {
+    "name": "Willis C. Winters Park",
+    "lat": 32.8038673,
+    "lng": -96.751072
+  },
+  {
+    "name": "Jaycee-Zaragoza Park",
+    "lat": 32.7807368,
+    "lng": -96.9060978
+  },
+  {
+    "name": "Campbell Green Park",
+    "lat": 32.9777569,
+    "lng": -96.787012
+  },
+  {
+    "name": "Kiest Park",
+    "lat": 32.7099533,
+    "lng": -96.8527737
+  },
+  {
+    "name": "Kidd Springs Park",
+    "lat": 32.7536943,
+    "lng": -96.8336724
+  },
+  {
+    "name": "Jaycee Zaragoza Recreation Center",
+    "lat": 32.780624,
+    "lng": -96.9089748
+  },
+  {
+    "name": "White Rock Lake",
+    "lat": 32.828066,
+    "lng": -96.7253164
+  }
+]

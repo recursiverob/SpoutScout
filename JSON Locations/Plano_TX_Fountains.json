@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Arbor Hills Nature Preserve",
+    "lat": 33.0469063,
+    "lng": -96.8473618
+  },
+  {
+    "name": "Archgate Park",
+    "lat": 33.0617407,
+    "lng": -96.7847537
+  },
+  {
+    "name": "Arrowhead Park",
+    "lat": 33.0327105,
+    "lng": -96.7852057
+  },
+  {
+    "name": "Big Lake Park",
+    "lat": 33.0466615,
+    "lng": -96.7234625
+  },
+  {
+    "name": "Bluebonnet Trail Greenbelt",
+    "lat": 33.0620026,
+    "lng": -96.7433233
+  },
+  {
+    "name": "Blue Ridge Park",
+    "lat": 33.061569,
+    "lng": -96.7276806
+  },
+  {
+    "name": "Bob Woodruff Park North",
+    "lat": 33.03418,
+    "lng": -96.659952
+  },
+  {
+    "name": "Bob Woodruff Park South",
+    "lat": 33.030199,
+    "lng": -96.65645320000002
+  },
+  {
+    "name": "Dog Park at Bob Woodruff Park",
+    "lat": 33.03418,
+    "lng": -96.659952
+  },
+  {
+    "name": "Bruce Glasscock Park Site",
+    "lat": 33.0299852,
+    "lng": -96.666819
+  },
+  {
+    "name": "Buckhorn Park",
+    "lat": 33.0459605,
+    "lng": -96.7604403
+  },
+  {
+    "name": "Caddo Park",
+    "lat": 33.0356484,
+    "lng": -96.7455035
+  },
+  {
+    "name": "Capstone Park",
+    "lat": 33.0903481,
+    "lng": -96.7423742
+  },
+  {
+    "name": "Carpenter Park",
+    "lat": 33.0631707,
+    "lng": -96.7746701
+  },
+  {
+    "name": "Skate Park at Carpenter Park",
+    "lat": 33.0631707,
+    "lng": -96.7746701
+  },
+  {
+    "name": "Cheyenne Park",
+    "lat": 33.0338761,
+    "lng": -96.7634578
+  },
+  {
+    "name": "Chisholm Trail",
+    "lat": 33.0502914,
+    "lng": -96.7275673
+  },
+  {
+    "name": "Clearview Park",
+    "lat": 33.0510934,
+    "lng": -96.7042512
+  },
+  {
+    "name": "Copper Creek Playground",
+    "lat": 33.0399633,
+    "lng": -96.722518
+  },
+  {
+    "name": "Cottonwood Creek Greenbelt",
+    "lat": 33.0484163,
+    "lng": -96.6475671
+  },
+  {
+    "name": "Coyote Creek Park",
+    "lat": 33.0539721,
+    "lng": -96.834981
+  },
+  {
+    "name": "Collin Creek Park Sites",
+    "lat": 33.0970602,
+    "lng": -96.7555095
+  },
+  {
+    "name": "Eldorado Park",
+    "lat": 33.0223862,
+    "lng": -96.7818585
+  },
+  {
+    "name": "Enfield Park",
+    "lat": 33.0675126,
+    "lng": -96.7069602
+  },
+  {
+    "name": "Evans Park",
+    "lat": 33.0229716,
+    "lng": -96.7549195
+  },
+  {
+    "name": "Frank Beverly Park",
+    "lat": 33.0736583,
+    "lng": -96.743015
+  },
+  {
+    "name": "Frito-Lay Pepsi Youth Ballpark",
+    "lat": 33.0522762,
+    "lng": -96.6810193
+  },
+  {
+    "name": "Glen Meadows Park",
+    "lat": 33.0342452,
+    "lng": -96.8372774
+  },
+  {
+    "name": "Hackberry Park",
+    "lat": 33.0224817,
+    "lng": -96.7283262
+  },
+  {
+    "name": "Haggard Park",
+    "lat": 33.0203151,
+    "lng": -96.7018023
+  },
+  {
+    "name": "Haggard Property South Park Site",
+    "lat": 33.0282433,
+    "lng": -96.7042549
+  },
+  {
+    "name": "Harrington Park",
+    "lat": 33.02264540000001,
+    "lng": -96.7122752
+  },
+  {
+    "name": "Heritage Yards Athletic Fields",
+    "lat": 33.0882113,
+    "lng": -96.7848604
+  },
+  {
+    "name": "Hidden Meadow Park",
+    "lat": 33.104904,
+    "lng": -96.7585551
+  },
+  {
+    "name": "High Point Park Athletic Fields",
+    "lat": 33.062081,
+    "lng": -96.7075502
+  },
+  {
+    "name": "Hoblitzelle Park",
+    "lat": 33.0731667,
+    "lng": -96.712827
+  },
+  {
+    "name": "Hoblitzelle Park East",
+    "lat": 33.0731667,
+    "lng": -96.712827
+  },
+  {
+    "name": "Horseshoe Park",
+    "lat": 33.0511037,
+    "lng": -96.7430432
+  },
+  {
+    "name": "Indian Creek Park",
+    "lat": 33.03823089999999,
+    "lng": -96.847979
+  },
+  {
+    "name": "Jack Carter Park",
+    "lat": 33.0660039,
+    "lng": -96.7474357
+  },
+  {
+    "name": "Dog Park at Jack Carter Park",
+    "lat": 33.0660039,
+    "lng": -96.7474357
+  },
+  {
+    "name": "Liberty Park",
+    "lat": 33.0154315,
+    "lng": -96.7443216
+  },
+  {
+    "name": "Lone Star Park",
+    "lat": 33.0616741,
+    "lng": -96.7616405
+  },
+  {
+    "name": "Longhorn Park",
+    "lat": 33.0152143,
+    "lng": -96.7587046
+  },
+  {
+    "name": "Los Rios Park",
+    "lat": 33.0138723,
+    "lng": -96.647109
+  },
+  {
+    "name": "Lt. Russell A. Steindam Park",
+    "lat": 33.0802772,
+    "lng": -96.7841598
+  },
+  {
+    "name": "Memorial Park",
+    "lat": 33.0198431,
+    "lng": -96.6988856
+  },
+  {
+    "name": "Oak Point Park & Nature Preserve",
+    "lat": 33.0528768,
+    "lng": -96.6738533
+  },
+  {
+    "name": "Old Shepard Place Park",
+    "lat": 33.0215543,
+    "lng": -96.7963903
+  },
+  {
+    "name": "Overland Trail",
+    "lat": 33.0119307,
+    "lng": -96.7221558
+  },
+  {
+    "name": "Parks P - R",
+    "lat": 33.0299852,
+    "lng": -96.666819
+  },
+  {
+    "name": "Parkwood Green Park",
+    "lat": 33.0342627,
+    "lng": -96.8261471
+  },
+  {
+    "name": "Prairie Meadow Park",
+    "lat": 33.07955,
+    "lng": -96.7542595
+  },
+  {
+    "name": "Preston Meadow Park",
+    "lat": 33.0467223,
+    "lng": -96.7774763
+  },
+  {
+    "name": "Preston Ridge Trail",
+    "lat": 33.0626126,
+    "lng": -96.7762685
+  },
+  {
+    "name": "Ridgeview Park",
+    "lat": 33.1049188,
+    "lng": -96.764121
+  },
+  {
+    "name": "Russell Creek Park",
+    "lat": 33.0978553,
+    "lng": -96.7596298
+  },
+  {
+    "name": "Rustic Park",
+    "lat": 33.026383,
+    "lng": -96.736355
+  },
+  {
+    "name": "Parks S - T",
+    "lat": 33.0198431,
+    "lng": -96.6988856
+  },
+  {
+    "name": "Santa Fe Trail",
+    "lat": 33.0385873,
+    "lng": -96.6793482
+  },
+  {
+    "name": "Schell Park",
+    "lat": 33.0362095,
+    "lng": -96.6838139
+  },
+  {
+    "name": "Sgt. Mike McCreary Sports Fields",
+    "lat": 33.02528960000001,
+    "lng": -96.6923842
+  },
+  {
+    "name": "Shady Brook Trail",
+    "lat": 33.065322,
+    "lng": -96.8461987
+  },
+  {
+    "name": "Shawnee Park & Disc Golf Course",
+    "lat": 33.0439568,
+    "lng": -96.6879559
+  },
+  {
+    "name": "Shoshoni Park",
+    "lat": 33.016716,
+    "lng": -96.6693249
+  },
+  {
+    "name": "Steeplechase Park",
+    "lat": 33.0209702,
+    "lng": -96.820697
+  },
+  {
+    "name": "Stimpson & Drake Park",
+    "lat": 33.0162892,
+    "lng": -96.7033898
+  },
+  {
+    "name": "Stoney Hollow Park",
+    "lat": 33.0501555,
+    "lng": -96.6488334
+  },
+  {
+    "name": "Suncreek Park",
+    "lat": 33.0907899,
+    "lng": -96.7069481
+  },
+  {
+    "name": "Sunset Park",
+    "lat": 33.0603139,
+    "lng": -96.8397056
+  },
+  {
+    "name": "Tejas Park",
+    "lat": 33.0816511,
+    "lng": -96.7089317
+  },
+  {
+    "name": "Timber Brook Park",
+    "lat": 33.0629035,
+    "lng": -96.666819
+  },
+  {
+    "name": "W.H. \"Buzz\" Rasor Park",
+    "lat": 33.1013522,
+    "lng": -96.7762898
+  },
+  {
+    "name": "Wagon Wheel Park",
+    "lat": 33.0612063,
+    "lng": -96.7147829
+  },
+  {
+    "name": "Westwood Park",
+    "lat": 33.0128788,
+    "lng": -96.7255529
+  },
+  {
+    "name": "White Rock Trail Park",
+    "lat": 33.0195311,
+    "lng": -96.8133196
+  },
+  {
+    "name": "Willowcreek Park",
+    "lat": 33.0285877,
+    "lng": -96.682618
+  },
+  {
+    "name": "Windhaven Meadows Park",
+    "lat": 33.055319,
+    "lng": -96.8078528
+  },
+  {
+    "name": "Dog Park at Windhaven Meadows Park",
+    "lat": 33.0556184,
+    "lng": -96.8070467
+  },
+  {
+    "name": "Windhaven Park",
+    "lat": 33.0558488,
+    "lng": -96.831704
+  }
+]
