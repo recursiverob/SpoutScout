@@ -34,14 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Array of fountain JSON files
     const fountainFiles = [
-        './NY-fountains.json',
-        'Pittsburgh Drinking Foutains.json',
-        './Geocoded_Addresses_Updated_Single_Line.json',
-        'Pasadena-CA Drinking-Fountains.json',
-        'Denver_park_addresses.json',
-        'Random Fountains.json',
-        'Plano_TX_Fountains.json',
-        'Dallas_TX_Fountains.json'
+        'JSON Locations/NYC_Fountains.json',
+        'JSON Locations/Pittsburgh_PA_Foutains.json',
+        'JSON Locations/Geocoded_Addresses_Updated_Single_Line(SouthDakota).json',
+        'JSON Locations/Pasadena_CA_Fountains.json',
+        'JSON Locations/Denver_CO_Fountains.json',
+        'JSON Locations/Random_Fountains.json',
+        'JSON Locations/Plano_TX_Fountains.json',
+        'JSON Locations/Dallas_TX_Fountains.json'
     ];
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('get-directions-btn')) {
