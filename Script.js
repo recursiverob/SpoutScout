@@ -85,7 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </button>
                     `);
                     markers.addLayer(marker);
+                });
 
+            })
                     
             /*.catch(error => {
                 showMessage(`Error loading ${file}`, true);
