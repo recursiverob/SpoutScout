@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpoutScout</title>
-    <link rel="stylesheet" href="Styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css">
-    <link rel="icon" type="image/png" sizes="64x64" href="Logos/SpoutScout_Logo.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpoutScout</title>
+  <link rel="stylesheet" href="Styles.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
+  <link rel="icon" type="image/png" sizes="64x64" href="Logos/SpoutScout_Logo.png" />
 </head>
-<body>
-    <div id="loading">
-        <img src="Logos/SpoutScout_Logo_Name_NBG.png" alt="Loading">
-    </div>
-    <div class="search-bar">
-        <input type="text" id="search" placeholder="Enter a city or ZIP code...">
-        <button onclick="searchLocation()">Search</button>
-        <!--<button onclick="highlightZipCode()">Highlight ZIP Code</button>-->
-    </div>
 
-        <div id="map-controls">
-            <!--<button id="locate-user" onclick="locateUser()">Locate Me</button>-->
-            <button id="toggle-map-style" onclick="toggleMapStyle()">Satellite View</button>
-            <button id="show-my-location" onclick="showMyLocation()">Locate Mee</button>
-            <button id="locate-nearest" onclick="locateNearestFountain()">Locate Nearest Fountain</button>
-        </div>
-        
-    </div>
-    <div id="map"></div>
-    <div id="message-box" class="message-box"></div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script src="Script.js"></script>
-    <div id="copyright">
-        &copy; 2024 SpoutScout. All rights reserved.
-    </div>
-    
+<body>
+  <!-- LOADING Screen -->
+  <div id="loading">
+    <img src="Logos/SpoutScout_Logo_Name_NBG.png" alt="Loading" />
+  </div>
+
+  <!-- SEARCH BAR -->
+  <div class="search-bar">
+    <input
+      type="text"
+      id="search"
+      placeholder="Enter a city or ZIP code..."
+    />
+    <button onclick="searchLocation()">Search</button>
+  </div>
+
+  <!-- HAMBURGER ICON - Hidden on desktop, shown on mobile -->
+  <div id="hamburger" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- MAP CONTROLS -->
+  <div id="map-controls">
+    <button id="toggle-map-style" onclick="toggleMapStyle()">Satellite View</button>
+    <button id="show-my-location" onclick="showMyLocation()">Locate Me</button>
+    <button id="locate-nearest" onclick="locateNearestFountain()">Locate Nearest Fountain</button>
+  </div>
+
+  <!-- LEAFLET MAP -->
+  <div id="map"></div>
+
+  <!-- MESSAGE BOX -->
+  <div id="message-box" class="message-box"></div>
+
+  <!-- LEAFLET SCRIPTS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+  <!-- MAIN JS SCRIPT -->
+  <script src="Script.js"></script>
+
+  <!-- COPYRIGHT -->
+  <div id="copyright">
+    &copy; 2024 SpoutScout. All rights reserved.
+  </div>
 </body>
 </html>
