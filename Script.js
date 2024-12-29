@@ -10,7 +10,7 @@ window.onload = function() {
     setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('map').style.visibility = 'visible';
-    }, 2300); 
+    }, 2000); //  Loading Screen
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     map = L.map('map', {
         maxBounds: usBounds,
         maxBoundsViscosity: 1.0 // Fully restricts panning beyond bounds
-    }).setView([39.8283, -98.5795], 5); // Centers the map on the US
+    }).setView([39.8283, -98.5795], 5); // Centered on US
 
     // Add OpenStreetMap tiles
     currentTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -85,17 +85,30 @@ document.addEventListener("DOMContentLoaded", () => {
                         </button>
                     `);
                     markers.addLayer(marker);
-                });
 
+                    // Add data to heatmap
+                    heatmapData.push(latLng);
+                });
+                map.addLayer(markers);
+
+                // Initialize heatmap layer
+                if (!heatmapLayer) {
+                    heatmapLayer = L.heatLayer(heatmapData, {
+                        radius: 25,
+                        blur: 15,
+                        maxZoom: 17,
+                    });
+                } else {
+                    heatmapLayer.addLatLng(heatmapData);
+                }
             })
-                    
             /*.catch(error => {
                 showMessage(`Error loading ${file}`, true);
             });
             */
     });
 
-    
+    // Fetch the NYC ZIP codes JSON
     fetch('./nyc-zip-codes.json')
         .then(response => response.json())
         .then(data => {
@@ -135,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Add the search button functionality
+    
     const searchButton = document.getElementById("search-button");
     if (searchButton) {
         searchButton.addEventListener("click", searchLocation);
@@ -155,7 +168,7 @@ function locateNearestFountain() {
         let nearestFountain = null;
         let shortestDistance = Infinity;
 
-        // This iterates through the markers to find the nearest fountain
+        // Iterate through the markers to find the nearest fountain
         markers.eachLayer(marker => {
             const fountainLat = marker.getLatLng().lat;
             const fountainLng = marker.getLatLng().lng;
@@ -173,11 +186,11 @@ function locateNearestFountain() {
             const nameMatch = /<b>(.*?)<\/b>/.exec(popupContent);
             const locationName = nameMatch ? nameMatch[1] : "Unknown Location";
 
-            // Uncluster the nearest fountain if it is part of a cluster marker
+            // Uncluster the nearest fountain if it is part of a cluster
             markers.zoomToShowLayer(nearestFountain, () => {
-                // Centers the map opens the popup and displays the message
-                map.setView([lat, lng], 15); // Zooms to the nearest fountain
-                nearestFountain.bindPopup(popupContent).openPopup(); // Opens the popup
+                // Centers the map, opens the popup, and displays the message
+                map.setView([lat, lng], 15); // Zoom to the nearest fountain
+                nearestFountain.bindPopup(popupContent).openPopup(); // Open the popup
                 showMessage(`Nearest fountain located at ${locationName} (${shortestDistance.toFixed(2)} km / ${(shortestDistance * 0.621371).toFixed(2)} mi away)`);
             });
         } else {
@@ -201,7 +214,7 @@ function showMyLocation() {
         const userLat = position.coords.latitude;
         const userLng = position.coords.longitude;
 
-        // This calls the reverse geocoding API
+        // Calls the reverse geocoding API
         const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLng}`;
 
         try {
@@ -210,8 +223,7 @@ function showMyLocation() {
 
             const data = await response.json();
             const address = data.display_name || "Address not available";
-
-            // Create a custom marker so that the user stands out amongst the fountain markers
+            // Create a custom icon for the user so that they stand out amongst location markers
         const customIcon = L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', // URL for a red marker
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png', // Optional shadow
@@ -219,7 +231,7 @@ function showMyLocation() {
             iconAnchor: [20, 60], 
             popupAnchor: [0, -50] 
         });
-            // Add marker to the map with the address pf the user
+            // Add marker to the map with address
             const userMarker = L.marker([userLat, userLng], {icon: customIcon})
                 .addTo(map)
                 .bindPopup(`<b>You are here</b><br>${address}`)
@@ -246,7 +258,7 @@ function searchLocation() {
     }
 
     const requestUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=us`;
-    console.log("Requesting:", requestUrl); // Debug log just incase the call fails
+    console.log("Requesting:", requestUrl); // Debug log to catch any errors during call
 
     fetch(requestUrl)
         .then(response => {
@@ -275,7 +287,7 @@ function openGoogleMapsDirections(lat, lng) {
     window.open(directionsUrl, '_blank');
 }
 
-// Haversine formula to calculate the distance between two points
+// Haversine formula to calculate distance between two points
 function haversineDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Radius of the Earth in km
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -310,7 +322,7 @@ function toggleMapStyle() {
             maxZoom: 19,
         });
         currentTileLayer.addTo(map);
-        toggleButton.textContent = "Satellite View"; // Update button text
+        toggleButton.textContent = "Satellite View"; 
         showMessage("Switched to Default Map View");
     }
 }
@@ -321,20 +333,21 @@ function showMessage(message, isError = false) {
     messageBox.textContent = message;
     messageBox.style.backgroundColor = isError ? '#f8d7da' : '#d4edda';
     messageBox.style.color = isError ? '#721c24' : '#155724';
-    messageBox.style.opacity = '1'; // Ensure message is fully visible
+    messageBox.style.opacity = '1'; 
     messageBox.classList.add('active');
 
-    // Start fading out after 4 seconds
+    // Starts fading out after 4 seconds
     setTimeout(() => {
         messageBox.style.opacity = '0'; // Fade out
     }, 4000);
 
-   
+    // Remove the active class and reset styles after fade-out (5 seconds)
     setTimeout(() => {
         messageBox.classList.remove('active');
         messageBox.style.opacity = ''; 
     }, 5000);
 }
+-------------------------------------------
 function toggleMobileMenu() {
     const mapControls = document.getElementById('map-controls');
     mapControls.classList.toggle('show-controls');
