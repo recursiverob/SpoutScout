@@ -1,9 +1,13 @@
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-#map { 
-    height: 100vh; 
-    width: 100%; 
-    visibility: hidden; 
+#map {
+    height: 100vh;
+    width: 100%;
+    visibility: hidden;
 }
 
 #loading {
@@ -20,15 +24,9 @@ body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
 }
 
 #loading img {
-    width: 200px;
-    height: auto;
+    width: 195px; 
+    height: auto; 
     animation: pulse 1.5s ease-in-out infinite; /* Pulsing effect */
-}
-
-#loading img {
-    width: 195px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
-    animation: pulse 1.5s ease-in-out infinite; /* Add pulsing effect */
 }
 
 @keyframes pulse {
@@ -46,59 +44,16 @@ body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
     }
 }
 
-
-.search-bar, .map-controls, .message-box {
+.search-bar {
     position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-}
-
-.search-bar {
-    top: 10px; 
-    left: 50%; 
-    transform: translateX(-50%);
-}
-
-.map-controls {
-    top: 10px; 
-    right: 10px;
-}
-
-.message-box {
-    position: absolute;
-    bottom: 10px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    z-index: 1000;
-    background-color: white;
-    opacity: 0; /* Initially invisible */
-    transition: opacity 0.8s ease-in-out; /* Smooth fade-in and fade-out */
-}
-
-.message-box.active {
-    opacity: 1; /* Fully visible when active */
-}
-
-
-button {
-    background-color: #1f93ce;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-button:hover {
-    background-color: #02b1ec; 
 }
 
 input[type="text"] {
@@ -113,20 +68,34 @@ input[type="text"]:focus {
     outline: none;
     border-color: #007bff;
 }
+
+button {
+    background-color: #1f93ce;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+button:hover {
+    background-color: #02b1ec;
+}
+
+/* MAP CONTROLS (Desktop Default) */
 #map-controls {
     position: absolute;
-    top: 2px;
-    right: 1px;
+    top: 4px;
+    right: 2px;
     background: white;
     padding: 5px;
     border-radius: 12px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Ensures it appears above the map */
+    z-index: 1000;
 }
-
 #map-controls button {
     display: block; /* Stack buttons vertically */
-    width: 150px;
+    width: 100px;
     margin: 5px 0;
     padding: 10px;
     font-size: 14px;
@@ -134,12 +103,34 @@ input[type="text"]:focus {
     border-radius: 10px;
     background-color: #1f93ce;
     cursor: pointer;
+    /*font-weight: 525;*/
+    box-shadow: 0px 4px 6px rgba(33, 32, 32, 0.2); /* Little shadow effect on the buttons*/
+    
 }
-
 #map-controls button:hover {
     background-color: #02b1ec;
 }
 
+/* MESSAGE BOX */
+.message-box {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    z-index: 1000;
+    background-color: white;
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.8s ease-in-out; /* Smooth fade-in and fade-out */
+}
+.message-box.active {
+    opacity: 1; /* Fully visible when active */
+}
+
+/* COPYRIGHT */
 #copyright {
     position: absolute;
     bottom: 10px;
@@ -150,10 +141,69 @@ input[type="text"]:focus {
     padding: 5px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Ensure it appears above the map */
+    z-index: 1000;
     pointer-events: none; /* Prevent interaction with the map */
 }
+
 .leaflet-control-attribution {
     display: none;
 }
 
+/*
+  HAMBURGER ICON
+  It's hidden on the desktop by default, but shown on mobile in the media query.
+*/
+#hamburger {
+    display: none; 
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 2001;
+
+    /* Stack lines vertically */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    /*make the background blue */
+    background-color: #1f93ce;
+    
+    border: 10px solid #1f93ce; 
+    border-radius: 8px;
+}
+
+/* The 3 lines that make up the hamburger icon */
+#hamburger span {
+    display: block;
+    width: 100%;
+    height: 5px;
+
+    background-color: #fff; /* White */
+
+    border-radius: 20px;
+}
+
+/* 
+  MEDIA QUERIES 
+  On screens <= 768px, show the hamburger and hide the map controls by default.
+  Screens <= 768px are screens on mobile devices, so therefore the hamburger only 
+  shows when on mobile
+*/
+@media (max-width: 768px) {
+    #hamburger {
+        display: flex; 
+    }
+    #map-controls {
+        display: none; /* Hides the buttons until the hamburger is pressed */
+    }
+    /* Display the menu on mobile */
+    #map-controls.show-controls {
+        display: block;
+        top: 55px;
+        right: 9px;
+       /*width: 100px;*/
+    }
+}
