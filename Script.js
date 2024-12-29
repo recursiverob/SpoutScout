@@ -347,7 +347,7 @@ function showMessage(message, isError = false) {
         messageBox.style.opacity = ''; 
     }, 5000);
 }
--------------------------------------------
+//-------------------------------------------
 function toggleMobileMenu() {
     const mapControls = document.getElementById('map-controls');
     mapControls.classList.toggle('show-controls');
