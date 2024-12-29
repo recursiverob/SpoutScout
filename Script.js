@@ -10,19 +10,19 @@ window.onload = function() {
     setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('map').style.visibility = 'visible';
-    }, 2000); // Simulate loading time
+    }, 2300); 
 };
 
 document.addEventListener("DOMContentLoaded", () => {
     const usBounds = [
-        [24.396308, -125.0], // Southwest corner
-        [49.384358, -66.93457] // Northeast corner
+        [24.396308, -125.0], // Southwest corner of US
+        [49.384358, -66.93457] // Northeast corner of US
     ];
 
     map = L.map('map', {
         maxBounds: usBounds,
         maxBoundsViscosity: 1.0 // Fully restricts panning beyond bounds
-    }).setView([39.8283, -98.5795], 5); // Centered on US
+    }).setView([39.8283, -98.5795], 5); // Centers the map on the US
 
     // Add OpenStreetMap tiles
     currentTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -86,29 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     `);
                     markers.addLayer(marker);
 
-                    // Add data to heatmap
-                    heatmapData.push(latLng);
-                });
-                map.addLayer(markers);
-
-                // Initialize heatmap layer
-                if (!heatmapLayer) {
-                    heatmapLayer = L.heatLayer(heatmapData, {
-                        radius: 25,
-                        blur: 15,
-                        maxZoom: 17,
-                    });
-                } else {
-                    heatmapLayer.addLatLng(heatmapData);
-                }
-            })
+                    
             /*.catch(error => {
                 showMessage(`Error loading ${file}`, true);
             });
             */
     });
 
-    // Fetch the NYC ZIP codes JSON
+    
     fetch('./nyc-zip-codes.json')
         .then(response => response.json())
         .then(data => {
@@ -119,8 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error loading NYC ZIP codes JSON:", error);
         });
 
-    // Add the "Locate Nearest Drinking Fountain" button
-    //const locateButton = document.createElement('button');
+    
     locateButton.textContent = "Locate Nearest Drinking Fountain";
     locateButton.id = "locate-nearest";
     locateButton.style.position = "absolute";
@@ -130,8 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     locateButton.onclick = locateNearestFountain;
     document.body.appendChild(locateButton);
 
-    // Add the "Show My Location" button
-    //const myLocationButton = document.createElement('button');
+    
     myLocationButton.textContent = "Show My Location";
     myLocationButton.id = "show-my-location";
     myLocationButton.style.position = "absolute";
@@ -141,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     myLocationButton.onclick = showMyLocation;
     document.body.appendChild(myLocationButton);
 
-    // Add event listener for Get Me Here buttons
+    
     document.addEventListener('click', event => {
         if (event.target.classList.contains('get-directions-btn')) {
             const lat = parseFloat(event.target.getAttribute('data-lat'));
@@ -170,7 +153,7 @@ function locateNearestFountain() {
         let nearestFountain = null;
         let shortestDistance = Infinity;
 
-        // Iterate through the markers to find the nearest fountain
+        // This iterates through the markers to find the nearest fountain
         markers.eachLayer(marker => {
             const fountainLat = marker.getLatLng().lat;
             const fountainLng = marker.getLatLng().lng;
@@ -188,11 +171,11 @@ function locateNearestFountain() {
             const nameMatch = /<b>(.*?)<\/b>/.exec(popupContent);
             const locationName = nameMatch ? nameMatch[1] : "Unknown Location";
 
-            // Uncluster the nearest fountain if it is part of a cluster
+            // Uncluster the nearest fountain if it is part of a cluster marker
             markers.zoomToShowLayer(nearestFountain, () => {
-                // Center the map, open the popup, and display the message
-                map.setView([lat, lng], 15); // Zoom to the nearest fountain
-                nearestFountain.bindPopup(popupContent).openPopup(); // Open the popup
+                // Centers the map opens the popup and displays the message
+                map.setView([lat, lng], 15); // Zooms to the nearest fountain
+                nearestFountain.bindPopup(popupContent).openPopup(); // Opens the popup
                 showMessage(`Nearest fountain located at ${locationName} (${shortestDistance.toFixed(2)} km / ${(shortestDistance * 0.621371).toFixed(2)} mi away)`);
             });
         } else {
@@ -212,36 +195,45 @@ function showMyLocation() {
         return;
     }
 
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
         const userLat = position.coords.latitude;
         const userLng = position.coords.longitude;
 
-        if (userMarker) {
-            map.removeLayer(userMarker);
-        }
+        // This calls the reverse geocoding API
+        const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLng}`;
 
-        // Create a custom icon
+        try {
+            const response = await fetch(reverseGeocodeUrl);
+            if (!response.ok) throw new Error("Failed to fetch address");
+
+            const data = await response.json();
+            const address = data.display_name || "Address not available";
+
+            // Create a custom marker so that the user stands out amongst the fountain markers
         const customIcon = L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', // URL for a red marker
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png', // Optional shadow
-            iconSize: [40, 60], // Customize size: [width, height]
-            iconAnchor: [20, 60], // Anchor point of the icon (center bottom)
-            popupAnchor: [0, -50] // Point where the popup should open relative to the icon
+            iconSize: [40, 60], 
+            iconAnchor: [20, 60], 
+            popupAnchor: [0, -50] 
         });
+            // Add marker to the map with the address pf the user
+            const userMarker = L.marker([userLat, userLng], {icon: customIcon})
+                .addTo(map)
+                .bindPopup(`<b>You are here</b><br>${address}`)
+                .openPopup();
 
-        // Add a custom marker to the map
-        userMarker = L.marker([userLat, userLng], { icon: customIcon })
-            .addTo(map)
-            .bindPopup("You are here")
-            .openPopup();
-
-        map.setView([userLat, userLng], 15); // Center the map on user's location
-        showMessage("Your location is displayed on the map");
-    }, error => {
+            map.setView([userLat, userLng], 15); // Zoom into user's location
+        } catch (error) {
+            console.error("Error fetching address:", error);
+            showMessage("Unable to retrieve address", true);
+        }
+    }, (error) => {
         console.error("Error retrieving location:", error);
         showMessage("Unable to retrieve your location", true);
     });
 }
+
 
 function searchLocation() {
     const query = document.getElementById('search').value.trim();
@@ -252,7 +244,7 @@ function searchLocation() {
     }
 
     const requestUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=us`;
-    console.log("Requesting:", requestUrl); // Debug log
+    console.log("Requesting:", requestUrl); // Debug log just incase the call fails
 
     fetch(requestUrl)
         .then(response => {
@@ -281,7 +273,7 @@ function openGoogleMapsDirections(lat, lng) {
     window.open(directionsUrl, '_blank');
 }
 
-// Haversine formula to calculate distance between two points
+// Haversine formula to calculate the distance between two points
 function haversineDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Radius of the Earth in km
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -292,7 +284,7 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const km = R * c; // Distance in km
-    const mi = km * 0.621371; // Distance in miles
+    const mi = km * 0.621371; // Distance in mi
     return { km, mi }; // Return both distances
 }
 
@@ -335,10 +327,14 @@ function showMessage(message, isError = false) {
         messageBox.style.opacity = '0'; // Fade out
     }, 4000);
 
-    // Remove the active class and reset styles after fade-out (5 seconds)
+   
     setTimeout(() => {
         messageBox.classList.remove('active');
-        messageBox.style.opacity = ''; // Reset opacity for future messages
+        messageBox.style.opacity = ''; 
     }, 5000);
 }
-
+function toggleMobileMenu() {
+    const mapControls = document.getElementById('map-controls');
+    mapControls.classList.toggle('show-controls');
+  }
+  
