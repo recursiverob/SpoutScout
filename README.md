@@ -1,4 +1,4 @@
-#SpoutScout Demo Video
+## SpoutScout Demo Video
 
 https://github.com/user-attachments/assets/d8b0672c-dd64-41f7-ad8a-f09eab21daa9
 
