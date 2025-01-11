@@ -1,3 +1,7 @@
+#SpoutScout Demo Video
+
+https://github.com/user-attachments/assets/d8b0672c-dd64-41f7-ad8a-f09eab21daa9
+
 # SpoutScout
 
 SpoutScout is an interactive web app that maps and displays over 4,500+ accessible drinking fountains across the United States. Designed with accessibility and user experience in mind, the app allows users to locate fountains near their location, visualize clusters of fountains, and access real-time directions to any fountain.
