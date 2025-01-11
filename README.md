@@ -28,7 +28,7 @@ SpoutScout is an interactive web app that maps and displays over 4,500+ accessib
   - Google Maps for real-time navigation
 - **Backend Data Processing**:
   - Python scripts for cleaning, extracting, and converting raw data into JSON format
-  - API usage in Python scripts (e.g., Nominatim and Google Geocoding APIs)
+  - API usage in Frontend and Python scripts (e.g., Nominatim and Google Geocoding APIs)
 
 ## Usage
 
