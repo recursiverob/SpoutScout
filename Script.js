@@ -184,7 +184,7 @@ function locateNearestFountain() {
             const { lat, lng } = nearestFountain.getLatLng();
             const popupContent = nearestFountain.getPopup().getContent();
             const nameMatch = /<b>(.*?)<\/b>/.exec(popupContent);
-            const locationName = nameMatch ? nameMatch[1] : "Unknown Location";
+            const locationName = nameMatch ? nameMatch[1] : "Unknown Location (Consider using a different browser)";
 
             // Uncluster the nearest fountain if it is part of a cluster
             markers.zoomToShowLayer(nearestFountain, () => {
