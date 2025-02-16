@@ -241,3 +241,21 @@ button:hover {
 #feedback-button:hover {
     background-color: #1f93ce;
 }
+
+/* Preventing h1 and h2 from being displayed */
+.hidden-h1 {
+    position: absolute;
+    left: -9999px; 
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.hidden-h2 {
+    position: absolute;
+    left: -9999px; 
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
