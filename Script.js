@@ -341,7 +341,7 @@ function showMessage(message, isError = false) {
         messageBox.style.opacity = '0'; // Fade out
     }, 4000);
 
-    // Remove the active class and reset styles after fade-out (5 seconds)
+    // Removes the active class and reset styles after fade-out (5 seconds)
     setTimeout(() => {
         messageBox.classList.remove('active');
         messageBox.style.opacity = ''; 
@@ -352,4 +352,9 @@ function toggleMobileMenu() {
     const mapControls = document.getElementById('map-controls');
     mapControls.classList.toggle('show-controls');
   }
+
+//Redirect to google forms
+function redirectToFeedback() {
+    window.open("https://forms.gle/fVYE67SpREuvSquaA", "_blank");
+}
   
