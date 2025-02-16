@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
         'JSON Locations/Denver_CO_Fountains.json',
         'JSON Locations/Random_Fountains.json',
         'JSON Locations/Plano_TX_Fountains.json',
-        'JSON Locations/Dallas_TX_Fountains.json'
+        'JSON Locations/Dallas_TX_Fountains.json',
+        'JSON Locations/Orlando_FL_Fountains.json',
+        'JSON Locations/Florida_State_Fountains.json'
     ];
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('get-directions-btn')) {
